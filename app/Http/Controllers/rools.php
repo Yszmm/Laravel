@@ -1,0 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: 尽管如此世界依然美丽
+ * Date: 2017/12/3/003
+ * Time: 0:19
+ */
+function conn ()
+{
+    $dns = mysqli_connect("localhost","root","yszm","qy");
+    return $dns;
+}
