@@ -53,6 +53,7 @@ $types = $stmt->fetchAll();
                 </div>
                 <div class="col-xs-10 text-right menu-1">
                     <ul>
+                        @include('admin.particles.QQlogin')
                         <li class="has-dropdown">
                             <a href="/">首页</a>
                             <ul class="dropdown">

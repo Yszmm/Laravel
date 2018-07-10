@@ -45,7 +45,10 @@ $types = $stmt->fetchAll();
                     </div>
                     <div class="form-group">
                         <label>文章内容</label>
-                        <script id="container" name="content" type="text/plain"></script>                    </div>
+                        <div id="editor">
+
+                        </div>
+                                           </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="添加文章" />
                     </div>
@@ -63,7 +66,16 @@ $types = $stmt->fetchAll();
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="{{asset('adminlte/editor/ueditor.all.js')}}"></script>
     <!-- 实例化编辑器 -->
+    <script type="text/javascript" src="{{asset('adminlte/wangeditor/release/wangEditor.min.js')}}"></script>
+
+    {{--<script type="text/javascript">--}}
+        {{--var ue = UE.getEditor('container');--}}
+    {{--</script>--}}
     <script type="text/javascript">
-        var ue = UE.getEditor('container');
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        // 或者 var editor = new E( document.getElementById('editor') )
+        editor.create()
     </script>
+
     @endsection

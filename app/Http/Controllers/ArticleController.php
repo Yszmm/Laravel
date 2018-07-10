@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class ArticleController extends Controller
 {
+
+    use AuthenticatesUsers;
+
     function store(Request $request)
     {
         require_once "tools.php";
@@ -69,29 +73,38 @@ class ArticleController extends Controller
 
     }
 
+
     function click()
     {
         require_once "tools.php";
 
-        $db = conn();
-        $name = $_POST['username'];
-        $pass = md5($_POST['password']);
-        $sql = "select id from qy_users where name=:name and pass=:pass";
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':name'=>$name,':pass'=>$pass]);
-        $row = $stmt->rowCount();
-        if(!$row)
-        {
-            echo "<script>alert('登陆失败');</script>";
-        }
-        if ($row > 0) {
-            return redirect('articlelist');
-        }
+            $db = conn();
+            $name = $_POST['username'];
+            $pass = md5($_POST['password']);
+            $sql = "select id from qy_users where name=:name and pass=:pass";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([':name' => $name, ':pass' => $pass]);
+            $row = $stmt->rowCount();
+            if (!$row) {
+                echo "<script>alert('登陆失败');</script>";
+            }
+            if ($row > 0) {
+                return redirect('articlelist');
+            }
+
+
+        $_SESSION['user'] =$row;
+
+
     }
 
     function loginl()
     {
         return view("admin.login");
+    }
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
 }

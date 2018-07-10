@@ -1,4 +1,6 @@
+
 @include("tool/tools")
+
 <?php
 /**
  * Created by PhpStorm.
@@ -7,13 +9,7 @@
  * Time: 18:57
  */
 
-//session_start();
-//
-//if(!isset($_SESSION['user']))
-//{
-//    header("location:login.php");
-//    exit;
-//}
+
 
 $db = conn();
 
